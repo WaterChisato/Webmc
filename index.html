@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>请选择你要玩的我的世界版本</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #333;
+        }
+
+        h1 {
+            margin-top: 60px;
+            font-size: 42px;
+            color: #2c3e50;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .options-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin: 60px auto;
+            max-width: 1200px;
+            padding: 20px;
+        }
+
+        .option-card {
+            background: white;
+            border-radius: 20px;
+            width: 260px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .option-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .option-card a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .version-title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 12px;
+        }
+
+        .version-desc {
+            font-size: 18px;
+            color: #7f8c8d;
+            line-height: 1.5;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 32px;
+                margin-top: 40px;
+            }
+            .option-card {
+                width: 220px;
+                padding: 25px 15px;
+            }
+            .version-title {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>请选择你要玩的我的世界版本</h1>
+
+    <!-- 自动加载 options.html 的内容 -->
+    <div id="options-placeholder"></div>
+
+    <footer>
+        点击卡片即可进入对应版本的游戏页面 · 其他版本敬请期待
+    </footer>
+
+    <script>
+        fetch('options.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('options-placeholder').innerHTML = data;
+            })
+            .catch(err => {
+                document.getElementById('options-placeholder').innerHTML = 
+                    '<p style="color:red; font-size:18px;">加载版本列表失败，请检查 options.html 是否存在</p>';
+                console.error(err);
+            });
+    </script>
+
+</body>
+</html>
